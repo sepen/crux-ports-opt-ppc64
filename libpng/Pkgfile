@@ -1,0 +1,27 @@
+# Description: Library of PNG support functions with APNG support
+# URL: https://libpng.org/pub/png/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Arch Maintainer: Jose Beneyto, sepen at crux-arm dot nu
+# Depends on: zlib
+
+name=libpng
+version=1.6.55
+release=1
+source=(https://download.sourceforge.net/$name/$name-$version.tar.xz
+    libpng-1.6.54-apng.patch)
+
+build() {
+    patch -Np1 -d $name-$version -i $SRC/libpng-1.6.54-apng.patch
+
+    # PNG_POWERPC_VSX=on is only available on power7 and above 
+    cmake -S $name-$version -B build -G Ninja \
+      -D CMAKE_INSTALL_PREFIX=/usr \
+      -D CMAKE_INSTALL_LIBDIR=lib \
+      -D CMAKE_BUILD_TYPE=Release \
+      -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+      -D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+      -D PNG_POWERPC_VSX=off \
+      -Wno-dev
+    cmake --build build
+    DESTDIR=$PKG cmake --install build
+}
