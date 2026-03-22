@@ -1,2 +1,5 @@
-
-
+d:libpng
+f:ea6d1bfe08cebc0998a954145a99934d:libpng/Pkgfile
+f:35d019d1f75b30445ba53d6b4873449b:libpng/.footprint
+f:f6958a3ea2d438835f28b5fb3de0caa7:libpng/libpng-1.6.54-apng.patch
+f:8a91f037e89ae3e6435021addc66999f:libpng/.md5sum
