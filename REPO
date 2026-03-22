@@ -1,9 +1,13 @@
 d:gobject-introspection
+d:python3-pyyaml
 d:python3-cython
 d:libpng
 f:cb7b852a8674ca702c2c56fb8972739e:gobject-introspection/Pkgfile
 f:c3ae7f77a80b39ed08742d3aadaa78f1:gobject-introspection/.footprint
 f:ef8f0b8deb7e984dc2f73bf994bf3e7b:gobject-introspection/.md5sum
+f:f15a8aa6fd4586e00dbcab4b5e40d3b8:python3-pyyaml/Pkgfile
+f:aca420f30825324415dcf4d5e9a40a6d:python3-pyyaml/.footprint
+f:5fae1caca9e0745523ee81869dc11d04:python3-pyyaml/.md5sum
 f:99f839af9a5983f7fba4e45a983eea42:python3-cython/Pkgfile
 f:02a41a83bda312f7f26235d7c1c7daab:python3-cython/.footprint
 f:741793597a906108ea86f672376f736d:python3-cython/.md5sum
