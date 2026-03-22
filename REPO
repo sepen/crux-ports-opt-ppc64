@@ -1,6 +1,7 @@
 d:gobject-introspection
 d:python3-pyyaml
 d:python3-cython
+d:python3-markupsafe
 d:libpng
 f:cb7b852a8674ca702c2c56fb8972739e:gobject-introspection/Pkgfile
 f:c3ae7f77a80b39ed08742d3aadaa78f1:gobject-introspection/.footprint
@@ -11,6 +12,9 @@ f:5fae1caca9e0745523ee81869dc11d04:python3-pyyaml/.md5sum
 f:99f839af9a5983f7fba4e45a983eea42:python3-cython/Pkgfile
 f:02a41a83bda312f7f26235d7c1c7daab:python3-cython/.footprint
 f:741793597a906108ea86f672376f736d:python3-cython/.md5sum
+f:44d979728dc6e2b5c85ca9f376079327:python3-markupsafe/Pkgfile
+f:d669e53f7b853b93a07043b38f6733cb:python3-markupsafe/.footprint
+f:97817f2811727791c42cd781de5a4f0c:python3-markupsafe/.md5sum
 f:ea6d1bfe08cebc0998a954145a99934d:libpng/Pkgfile
 f:35d019d1f75b30445ba53d6b4873449b:libpng/.footprint
 f:f6958a3ea2d438835f28b5fb3de0caa7:libpng/libpng-1.6.54-apng.patch
