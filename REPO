@@ -1,5 +1,6 @@
 d:gobject-introspection
 d:python3-pyyaml
+d:clang
 d:llvm
 d:python3-cython
 d:python3-markupsafe
@@ -10,6 +11,8 @@ f:ef8f0b8deb7e984dc2f73bf994bf3e7b:gobject-introspection/.md5sum
 f:f15a8aa6fd4586e00dbcab4b5e40d3b8:python3-pyyaml/Pkgfile
 f:aca420f30825324415dcf4d5e9a40a6d:python3-pyyaml/.footprint
 f:5fae1caca9e0745523ee81869dc11d04:python3-pyyaml/.md5sum
+f:66b59e208fef8fa58da27608bdf505a0:clang/.footprint
+f:6aff1dfbcb90a0044f0c97435f28b7d7:clang/.md5sum
 f:f448a8f78af156cc79c989bbb65cad80:llvm/Pkgfile
 f:7fc6870fe0887ee43a2f0b720e4cdd4f:llvm/install-prefix.patch
 f:8942cb4172e3d82cc2faac83605cb8fc:llvm/.footprint
