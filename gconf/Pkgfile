@@ -1,0 +1,34 @@
+# Description: GConf configuration system.
+# URL: https://gitlab.gnome.org/Archive/gconf
+# Maintainer: Jose Beneyto, sepen at crux-arm dot nu
+# Depends on: dbus-glib intltool libxml2 polkit
+
+name=gconf
+version=3.2.6
+release=3
+source=(http://ftp.gnome.org/pub/gnome/sources/GConf/${version%.*}/GConf-$version.tar.xz)
+
+build() {
+    cd GConf-$version
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        --libexecdir=/usr/lib \
+	--with-gtk=2.0 \
+        --disable-gtk-doc \
+        --disable-static \
+        --disable-orbit 
+
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+    sed -i 's/gtk_dialog_get_content_area[[:space:]]*(dialog)/gtk_dialog_get_content_area(GTK_DIALOG(dialog))/g' \
+	    examples/basic-gconf-app.c
+    make CFLAGS+="-DGLIB_DISABLE_DEPRECATION_WARNINGS -Wno-unused-result"
+
+    make
+    make DESTDIR=$PKG install
+
+    rm -rf $PKG/usr/share/gtk-doc
+    rm -rf $PKG/usr/share/locale
+}
