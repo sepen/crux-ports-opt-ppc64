@@ -1,0 +1,26 @@
+# Description: Old version of Autoconf which accepts switches which are not valid in more recent versions
+# URL: https://ftp.gnu.org/gnu/autoconf/
+# Maintainer: Jose Beneyto, sepen at crux-arm dot nu
+# Depends on: texinfo
+
+name=autoconf213
+version=2.13
+release=1
+source=(https://ftp.gnu.org/gnu/autoconf/autoconf-$version.tar.gz \
+        autoconf-$version-consolidated_fixes-1.patch)
+
+
+build() {
+  cd autoconf-$version
+
+  patch -Np1 -i $SRC/autoconf-$version-consolidated_fixes-1.patch
+  mv -v autoconf.texi autoconf213.texi
+  rm -v autoconf.info
+
+  ./configure \
+    --prefix=/usr \
+    --program-suffix=$version
+
+  make
+  make DESTDIR=$PKG install
+}
