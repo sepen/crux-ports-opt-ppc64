@@ -1,0 +1,56 @@
+# Required on some PPC64 systems (libatomic not always linked automatically)
+export LDFLAGS="-latomic"
+
+# ---- Feature disabling (reduces dependencies and avoids problematic subsystems) ----
+ac_add_options --disable-crashreporter        # Avoid extra dependencies and old crashreporter issues
+ac_add_options --disable-tests                # Speeds up build, not needed for packaging
+ac_add_options --disable-debug                # Required for smaller and faster builds
+ac_add_options --disable-warnings-as-errors   # IMPORTANT: old code + new GCC = many warnings
+ac_add_options --disable-updater              # Updater is obsolete / often broken on custom builds
+ac_add_options --disable-mozril-geoloc        # Remove unused geolocation backend
+ac_add_options --disable-webrtc               # WebRTC is fragile and often breaks on PPC
+ac_add_options --disable-safe-browsing        # Avoid Google API dependencies
+ac_add_options --disable-parental-controls
+ac_add_options --disable-necko-wifi           # Avoid platform-specific networking code
+ac_add_options --disable-gamepad
+ac_add_options --disable-dbus                 # Avoid dbus dependency (optional but cleaner)
+ac_add_options --disable-gio
+ac_add_options --disable-pulseaudio           # Avoid audio stack issues on some systems
+
+# ---- Build configuration ----
+ac_add_options --enable-release               # Build as release (optimized, no debug)
+ac_add_options --enable-strip                 # Strip symbols to reduce binary size
+ac_add_options --enable-install-strip
+ac_add_options --enable-application=browser
+ac_add_options --with-branding=browser/branding/arcticfox
+# Optional: enable AltiVec if your CPU supports it (can improve performance)
+#ac_add_options --enable-altivec
+
+# ---- CRITICAL: stability flags for PPC64 ELFv1 ----
+# These reduce GCC optimizations that are known to generate broken assembly
+# or trigger undefined behavior in old Firefox 47 code.
+ac_add_options --enable-optimize="-O1 -fno-strict-aliasing -fno-tree-vrp -fno-delete-null-pointer-checks -Wno-error"
+
+# ---- UI backend ----
+# GTK3 is default, but GTK2 may look better or behave more reliably on older systems
+ac_add_options --enable-default-toolkit=cairo-gtk2
+
+# ---- Workarounds for known build/runtime issues ----
+# Prevents cache-related crashes and non-reproducible builds (Issue 162)
+ac_add_options --disable-precompiled-startupcache
+# Strongly recommended for stability on some systems:
+# jemalloc can cause crashes or weird behavior on non-x86 platforms
+ac_add_options --disable-jemalloc
+
+# ---- Optional: use system libraries instead of bundled ones ----
+# Can reduce build time, but may introduce ABI or compatibility issues.
+# Enable only if your system libraries are known to work with Firefox 47.
+#ac_add_options --with-system-nspr
+#ac_add_options --with-system-nss
+#ac_add_options --with-system-icu
+#ac_add_options --with-system-zlib
+#ac_add_options --with-system-bz2
+#ac_add_options --enable-system-hunspell
+#ac_add_options --enable-system-sqlite
+#ac_add_options --enable-system-ffi
+#ac_add_options --enable-system-pixman
