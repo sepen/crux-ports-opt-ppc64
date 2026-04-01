@@ -1,5 +1,6 @@
 d:llvm
 d:python3-markupsafe
+d:compiler-rt
 d:gobject-introspection
 d:python3-cython
 d:python3-pyyaml
@@ -17,6 +18,9 @@ f:7fc6870fe0887ee43a2f0b720e4cdd4f:llvm/install-prefix.patch
 f:97817f2811727791c42cd781de5a4f0c:python3-markupsafe/.md5sum
 f:44d979728dc6e2b5c85ca9f376079327:python3-markupsafe/Pkgfile
 f:d669e53f7b853b93a07043b38f6733cb:python3-markupsafe/.footprint
+f:6aff1dfbcb90a0044f0c97435f28b7d7:compiler-rt/.md5sum
+f:77991e9bfe12f313b08b80d8e6657768:compiler-rt/Pkgfile
+f:583ef39f6765fc6a436ffa4246cf60e9:compiler-rt/.footprint
 f:ef8f0b8deb7e984dc2f73bf994bf3e7b:gobject-introspection/.md5sum
 f:cb7b852a8674ca702c2c56fb8972739e:gobject-introspection/Pkgfile
 f:c3ae7f77a80b39ed08742d3aadaa78f1:gobject-introspection/.footprint
@@ -41,7 +45,7 @@ f:deb5a4607c4b7f67909658f65f9ce40b:arcticfox/Pkgfile
 f:bda07d8053264f6e5ca1be276a539c22:arcticfox/mozconfig
 f:accc62d86f6c172ddde5f50644a27a49:arcticfox/.footprint
 f:adcc77975210efbf35ad29af82a12bc2:gconf/.md5sum
-f:40112484169668cb8f559c9c66adf24c:gconf/Pkgfile
+f:e1a7c853037a570ffef012b68fe5f451:gconf/Pkgfile
 f:4ef7d66dc63a568204feef61652bf8f5:gconf/.footprint
 f:927b89e6b534a74ce891faf16bd4c349:autoconf213/.md5sum
 f:2a000b2c8ad96a3b811c1687b88c0e15:autoconf213/Pkgfile
