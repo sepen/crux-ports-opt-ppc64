@@ -1,0 +1,50 @@
+# Description: Arctic Fox Web Browser
+# URL: https://github.com/rmottola/Arctic-Fox
+# Maintainer: Jose Beneyto, sepen at crux-arm dot nu
+# Depends on: autoconf213 python gconf gtk tar zip unzip
+
+name=arcticfox
+version=47.0
+release=1
+source=(https://github.com/rmottola/Arctic-Fox/archive/refs/tags/v${version}.tar.gz
+	mozconfig)
+
+build() {
+    cd Arctic-Fox-${version}
+
+    cp $SRC/mozconfig .mozconfig
+    echo "mk_add_options MOZ_MAKE_FLAGS=\"-s -j${JOBS:-1}\"" >> .mozconfig
+
+    # Fix redefinition warning for CAIRO_VERSION_H by undefining before redefining
+    sed -i 's/#define CAIRO_VERSION_H 1/#undef CAIRO_VERSION_H\n#define CAIRO_VERSION_H 1/' \
+        gfx/cairo/cairo/src/cairo-version.c
+    # Fix type mismatch: cast surface pointer to cairo_surface_t* for newer compilers
+    sed -i 's/cairo_image_surface_get_format (\*surface)/cairo_image_surface_get_format((cairo_surface_t *) *surface)/' \
+        gfx/cairo/cairo/src/cairo-ft-font.c
+    # Replace invalid pointer-to-char assignment with a proper intentional crash
+    # Original code relied on undefined behavior rejected by modern GCC
+    sed -i 's/\*crasher = acquire_source_image_ptr\[5\];/\*(volatile char *)0 = 0;/' \
+        gfx/cairo/cairo/src/cairo-surface.c
+    # Fix incompatible pointer types with modern GCC (void** vs typed pointers)
+    sed -i 's/free_memory (&/free_memory ((void **) \&/g' \
+        gfx/cairo/libpixman/src/pixman-image.c
+    # Fix function pointer type mismatch with modern GCC
+    sed -i 's/f = (pixman_combine_32_func_t \*)imp->combine_16\[op\];/f = (pixman_combine_32_func_t) imp->combine_16[op];/' \
+        gfx/cairo/libpixman/src/pixman-implementation.c
+    # Fix pointer type mismatch (uint32_t* → uint16_t*) for modern GCC
+    sed -i 's/uint16_t \*buffer = iter->buffer;/uint16_t *buffer = (uint16_t *)iter->buffer;/' \
+        gfx/cairo/libpixman/src/pixman-radial-gradient.c
+
+    export CFLAGS="$CFLAGS -Wno-implicit-int"
+
+    python mach build
+    python mach package
+
+    install -d $PKG/usr/lib
+    tar -C $PKG/usr/lib \
+        -xpf obj-powerpc64-unknown-linux-gnu/dist/arcticfox*linux-powerpc64.tar.bz2
+
+    install -d $PKG/usr/bin
+    ln -sf /usr/lib/arcticfox/arcticfox ${PKG}/usr/bin/arcticfox
+}
+
