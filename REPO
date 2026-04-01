@@ -27,6 +27,7 @@ f:cb7b852a8674ca702c2c56fb8972739e:gobject-introspection/Pkgfile
 f:c3ae7f77a80b39ed08742d3aadaa78f1:gobject-introspection/.footprint
 f:f4f62b6fdff87db5c8a00cb5a09b0b02:python/.md5sum
 f:a11de7d41f7716ad15a932dc4fc2f4d0:python/Pkgfile
+f:b3016e44847e7106f5979d40fbccf8d7:python/python-gentoo-patches-2.7.18_p16.tar.xz
 f:989c728c87dc0c80d32e2af59dfa1afb:python/.footprint
 f:741793597a906108ea86f672376f736d:python3-cython/.md5sum
 f:99f839af9a5983f7fba4e45a983eea42:python3-cython/Pkgfile
