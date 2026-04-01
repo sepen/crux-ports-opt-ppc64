@@ -2,6 +2,7 @@ d:llvm
 d:python3-markupsafe
 d:compiler-rt
 d:gobject-introspection
+d:python
 d:python3-cython
 d:python3-pyyaml
 d:libpng
@@ -24,6 +25,9 @@ f:583ef39f6765fc6a436ffa4246cf60e9:compiler-rt/.footprint
 f:ef8f0b8deb7e984dc2f73bf994bf3e7b:gobject-introspection/.md5sum
 f:cb7b852a8674ca702c2c56fb8972739e:gobject-introspection/Pkgfile
 f:c3ae7f77a80b39ed08742d3aadaa78f1:gobject-introspection/.footprint
+f:f4f62b6fdff87db5c8a00cb5a09b0b02:python/.md5sum
+f:a11de7d41f7716ad15a932dc4fc2f4d0:python/Pkgfile
+f:989c728c87dc0c80d32e2af59dfa1afb:python/.footprint
 f:741793597a906108ea86f672376f736d:python3-cython/.md5sum
 f:99f839af9a5983f7fba4e45a983eea42:python3-cython/Pkgfile
 f:02a41a83bda312f7f26235d7c1c7daab:python3-cython/.footprint
