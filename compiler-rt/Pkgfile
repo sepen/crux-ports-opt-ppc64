@@ -1,0 +1,34 @@
+# Description: Compiler runtime libraries for clang
+# URL: https://compiler-rt.llvm.org/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Arch Maintainer: Jose Beneyto, sepen at crux-arm dot nu
+# Depends on: clang
+
+name=compiler-rt
+version=22.1.1
+release=1
+source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-project-$version.src.tar.xz)
+
+build() {
+    if ! /usr/bin/ldd /usr/bin/clang | grep -q -E '.*not found'; then
+        export CC=clang
+        export CXX=clang++
+    fi
+
+    cmake -S llvm-project-$version.src/compiler-rt -B build -G Ninja $PKGMK_COMPILER_RT \
+        -D CMAKE_INSTALL_PREFIX=/usr \
+        -D CMAKE_BUILD_TYPE=Release \
+        -D CMAKE_C_FLAGS_RELEASE="$CFLAGS -fno-exceptions" \
+        -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+        -D CMAKE_C_COMPILER_TARGET=powerpc64-unknown-linux-gnu \
+        -D CMAKE_CXX_COMPILER_TARGET=powerpc64-unknown-linux-gnu \
+	-D Python3_EXECUTABLE=/usr/bin/python3 \
+        -D COMPILER_RT_INSTALL_PATH=/usr/lib/clang/${version:0:2} \
+        -D COMPILER_RT_INCLUDE_TESTS=OFF \
+        -D COMPILER_RT_DEFAULT_TARGET_ONLY=ON \
+	-D COMPILER_RT_BUILD_TSAN=OFF \
+	-D LLVM_ENABLE_PER_TARGET_RUNTIME_DIR=ON \
+        -Wno-dev
+    cmake --build build -j ${JOBS:-1}
+    DESTDIR=$PKG cmake --install build
+}
