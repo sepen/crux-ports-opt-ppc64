@@ -33,25 +33,20 @@ build () {
     rm -r Lib/{bsddb,ctypes,email,lib-tk,sqlite3,unittest}/test
     rm -r Lib/{{distutils,json}/tests,idlelib/idle_test,test}
 
-    ./configure --prefix=/usr \
-	        --with-system-ffi \
-                --enable-shared \
-                --with-threads \
-                --enable-ipv6 
+    ./configure \
+        --prefix=/usr \
+        --with-system-ffi \
+        --enable-shared \
+        --with-threads \
+        --enable-ipv6
 
     make 
     make -j1 DESTDIR=$PKG install
 
-    # fix issue with man-page symlink
-    ln -sf python2.7.1 $PKG/usr/share/man/man1/python.1
-
-    ln -sf python2.7 $PKG/usr/bin/python
-    ln -s python2.7 $PKG/usr/lib/python
-    ln -s python2.7 $PKG/usr/include/python
+    rm $PKG/usr/bin/python $PKG/usr/bin/python-config $PKG/usr/bin/smtpd.py
     ln -s /usr/lib/libpython2.7.so $PKG/usr/lib/python2.7/config/libpython2.7.so
-
     rm $PKG/usr/bin/2to3
-    rm $PKG/usr/lib/python/{distutils,site-packages}/README
-    rm $PKG/usr/lib/python/idlelib/{ChangeLog,{NEWS,README,TODO}.txt}
-    rm $PKG/usr/lib/python/ctypes/macholib/README.ctypes
+    rm $PKG/usr/lib/python2.7/{distutils,site-packages}/README
+    rm $PKG/usr/lib/python2.7/idlelib/{ChangeLog,{NEWS,README,TODO}.txt}
+    rm $PKG/usr/lib/python2.7/ctypes/macholib/README.ctypes
 }
