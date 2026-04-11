@@ -1,0 +1,11 @@
+# README for go
+
+Go 1.8.7 is the last version that fully supports older PowerPC64 systems
+without requiring POWER8+ features as VSX.
+
+Later Go releases introduce instructions and runtime assumptions that cause
+illegal instruction faults on hardware like the PowerMac G5.
+
+Using Go 1.8.7 ensures maximum compatibility with big-endian ppc64 (ELFv1)
+environments. This makes it the safest choice for boostraping and building
+software on legacy PowerPC64 hardware.
