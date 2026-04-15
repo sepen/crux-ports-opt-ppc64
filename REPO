@@ -45,8 +45,8 @@ f:35d019d1f75b30445ba53d6b4873449b:libpng/.footprint
 f:f6958a3ea2d438835f28b5fb3de0caa7:libpng/libpng-1.6.54-apng.patch
 f:edbb1f38dad9f9296b0991fc6fa936d2:go/README
 f:a89245058732b01796d0ce1e2279fb00:go/.nostrip
-f:b5e9721d51e39e95601540af34ba22c0:go/Pkgfile
-f:f0e83a4540acc22889188999d27e78e1:go/.md5sum
+f:89fb74b540c3957b6275fe16e7809b2b:go/Pkgfile
+f:a976c8f63d714e9b16719df463fc171d:go/.md5sum
 f:48819d0fc634f471c7114bdec9f2efad:go/.footprint
 f:99f839af9a5983f7fba4e45a983eea42:python3-cython/Pkgfile
 f:741793597a906108ea86f672376f736d:python3-cython/.md5sum
