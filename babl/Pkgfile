@@ -1,0 +1,26 @@
+# Description: Dynamic, any to any, pixel format translation library
+# URL: https://gegl.org/babl
+# Maintainer: Tim Biermann, tbier at posteo dot de
+# Arch Maintainer: Jose Beneyto, sepen at crux-arm dot nu
+# Depends on: gobject-introspection lcms2
+# Optional: vala
+
+name=babl
+version=0.1.126
+release=1
+source=(https://download.gimp.org/pub/babl/0.1/babl-$version.tar.xz)
+
+build() {
+  sed "s!@BABL_GIT_VERSION@!$version!g" $name-$version/git-version.h.in > $name-$version/git-version.h
+
+  meson setup build $name-$version \
+    --prefix=/usr \
+    --buildtype=plain \
+    --wrap-mode nodownload \
+    -D b_lto=true \
+    -D b_pie=true \
+    -D with-docs=false \
+    -D gi-docgen=disabled
+  meson compile -C build -j ${JOBS:-1}
+  DESTDIR=$PKG meson install -C build
+}
