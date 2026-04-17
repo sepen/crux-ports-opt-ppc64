@@ -3,6 +3,7 @@ d:arcticfox
 d:compiler-rt
 d:python
 d:clang
+d:babl
 d:gconf
 d:autoconf213
 d:python3-pyyaml
@@ -29,6 +30,9 @@ f:cb14a8723cba7984166d4aaf75688b73:python/.footprint
 f:36c5314f505beccbd860adfab1241c6d:clang/Pkgfile
 f:6aff1dfbcb90a0044f0c97435f28b7d7:clang/.md5sum
 f:66b59e208fef8fa58da27608bdf505a0:clang/.footprint
+f:94e0bb1b998808bdabe6cce46de69621:babl/Pkgfile
+f:be77efef096eb7b07026340b23bdf0ce:babl/.md5sum
+f:d88100977ba46c155752396e652392d1:babl/.footprint
 f:e1a7c853037a570ffef012b68fe5f451:gconf/Pkgfile
 f:adcc77975210efbf35ad29af82a12bc2:gconf/.md5sum
 f:4ef7d66dc63a568204feef61652bf8f5:gconf/.footprint
